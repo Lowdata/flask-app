@@ -2,11 +2,15 @@ from flask import Flask, jsonify, request
 import psycopg2
 from psycopg2 import sql
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 app = Flask(__name__)
 
 
-connection_string = "postgresql://ayush:vhezVMT5znQK5mKCDwOL2w@database-1-8345.8nk.gcp-asia-southeast1.cockroachlabs.cloud:26257/leaderboard?sslmode=verify-full"
+
+connection_string = os.environ.get("CONNECTION_URL")
 conn = psycopg2.connect(connection_string)
 cursor = conn.cursor()
 
